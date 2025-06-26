@@ -20,6 +20,13 @@ const Tabs = withLayoutContext<
 >(BottomTabNavigator);
 
 
+import { AppOpenAd, InterstitialAd, RewardedAd, BannerAd, TestIds, BannerAdSize } from 'react-native-google-mobile-ads';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { View } from '@/components/Themed';
+import Constants from 'expo-constants'
+
+
+
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -32,28 +39,45 @@ function TabBarIcon(props: {
 export default function TabLayout() {
 
   return (
-    <Tabs>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Tab One',
-          tabBarIcon: () => ({ sfSymbol: "house" }),
-        }}
-      />
-      <Tabs.Screen
-        name="two"
-        options={{
-          title: 'Add',
-          tabBarIcon: () => ({ sfSymbol: "plus" }),
-        }}
-      />
-      <Tabs.Screen
-        name="three"
-        options={{
-          title: 'Profile',
-          tabBarIcon: () => ({ sfSymbol: "flag" }),
-        }}
-      />
-    </Tabs>
+    <>
+      <View style={{paddingTop: Constants.statusBarHeight}}>
+
+        <BannerAd
+          unitId={TestIds.BANNER}
+          size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+            networkExtras: {
+              collapsible: "top",
+            }
+          }}
+        >
+        </BannerAd>
+
+      </View>
+      <Tabs>
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: 'Tab One',
+            tabBarIcon: () => ({ sfSymbol: "house" }),
+          }}
+        />
+        <Tabs.Screen
+          name="two"
+          options={{
+            title: 'Add',
+            tabBarIcon: () => ({ sfSymbol: "plus" }),
+          }}
+        />
+        <Tabs.Screen
+          name="three"
+          options={{
+            title: 'Profile',
+            tabBarIcon: () => ({ sfSymbol: "flag" }),
+          }}
+        />
+      </Tabs>
+    </>
   );
 }

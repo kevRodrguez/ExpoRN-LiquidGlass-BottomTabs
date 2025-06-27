@@ -22,8 +22,8 @@ const Tabs = withLayoutContext<
 
 import { AppOpenAd, InterstitialAd, RewardedAd, BannerAd, TestIds, BannerAdSize } from 'react-native-google-mobile-ads';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { View } from '@/components/Themed';
 import Constants from 'expo-constants'
+import { View } from 'react-native';
 
 
 
@@ -40,7 +40,7 @@ export default function TabLayout() {
 
   return (
     <>
-      <View style={{paddingTop: Constants.statusBarHeight}}>
+      {/* <View style={{ paddingTop: Constants.statusBarHeight, backgroundColor: '#fff' }}>
 
         <BannerAd
           unitId={TestIds.BANNER}
@@ -54,7 +54,7 @@ export default function TabLayout() {
         >
         </BannerAd>
 
-      </View>
+      </View> */}
       <Tabs>
         <Tabs.Screen
           name="index"
@@ -75,6 +75,13 @@ export default function TabLayout() {
           options={{
             title: 'Profile',
             tabBarIcon: () => ({ sfSymbol: "flag" }),
+          }}
+        />
+        <Tabs.Screen
+          name="pricing"
+          options={{
+            title: 'Pricing',
+            tabBarIcon: () => ({ sfSymbol: "creditcard" }),
           }}
         />
       </Tabs>

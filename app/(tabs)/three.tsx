@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Image, StyleSheet, Dimensions } from 'react-native'
+import { View, Text, FlatList, Image, StyleSheet, Dimensions, SafeAreaView } from 'react-native'
 import React from 'react'
 import { AppOpenAd, InterstitialAd, RewardedAd, BannerAd, TestIds, BannerAdSize } from 'react-native-google-mobile-ads';
 
@@ -80,19 +80,21 @@ const PerritoItem = ({ item }: { item: Perrito }) => (
 
 export default function three() {
     return (
-        <View style={styles.container}>
-            <Text style={styles.titulo}>🐕 Perritos Adorables 🐕</Text>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
 
-            <FlatList
-                data={perritosData}
-                renderItem={PerritoItem}
-                keyExtractor={item => item.id}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.listaContainer}
-                ItemSeparatorComponent={() => <View style={styles.separador} />}
-            />
+            <View style={styles.container}>
+                <Text style={styles.titulo}>🐕 Perritos Adorables 🐕</Text>
 
-            {/* <BannerAd
+                <FlatList
+                    data={perritosData}
+                    renderItem={PerritoItem}
+                    keyExtractor={item => item.id}
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={styles.listaContainer}
+                    ItemSeparatorComponent={() => <View style={styles.separador} />}
+                />
+
+                {/* <BannerAd
                 unitId={TestIds.BANNER}
                 size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
                 requestOptions={{
@@ -103,7 +105,8 @@ export default function three() {
                 }}
             >
             </BannerAd> */}
-        </View>
+            </View>
+        </SafeAreaView>
     )
 }
 

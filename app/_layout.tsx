@@ -6,7 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
-import { useColorScheme } from '@/components/useColorScheme';
+import { useColorScheme } from '@/presentation/components/useColorScheme';
 
 
 export {
@@ -51,9 +51,23 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
+      <Stack
+        screenOptions={{
+          // Oculta siempre el texto del back button
+          headerBackButtonDisplayMode: 'minimal',
+        }}
+      >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen name='success' options={{ headerShown: false }} />
+        <Stack.Screen name='checkout-screen' options={{
+          title: 'Checkout',
+          headerShown: true,
+
+          headerTitleAlign: 'center',
+          headerShadowVisible: false,
+          headerBackVisible: true,
+        }} />
       </Stack>
     </ThemeProvider>
   );
